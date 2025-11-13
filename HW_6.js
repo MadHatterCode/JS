@@ -55,3 +55,52 @@ let sorted = coursesAndDurationArray
         return{...a, id: index +1}})
 
 console.log(sorted);
+
+const suits = [
+    { suit: 'spade', color: 'black' },
+    { suit: 'club', color: 'black' },
+    { suit: 'heart', color: 'red' },
+    { suit: 'diamond', color: 'red' }
+];
+
+const values = ['6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
+
+const deck = [];
+for (let { suit, color } of suits) {
+    for (let value of values) {
+        deck.push({
+            cardSuit: suit,
+            value: value,
+            color: color
+        });
+    }
+}
+console.log(deck);
+
+let aceOfSpades = deck.find(a => a.cardSuit === 'spade' && a.value === 'ace');
+console.log(aceOfSpades);
+
+function filterCards(card, option, value) {
+    switch (option) {
+        case 'suit': return card.suit === value;
+        case 'color': return card.color === value;
+        case 'value': return card.value === value;
+        default: return false;
+    }
+}
+
+
+let sixes = deck.filter(card => filterCards(card, 'value', 'ace'));
+// console.log(sixes);
+
+
+let suitPack = deck.reduce((acc,currentValue) => {
+    if(acc[currentValue.cardSuit]) {
+        acc[currentValue.cardSuit].push(currentValue);
+    } else {
+        acc[currentValue.cardSuit] = [];
+        acc[currentValue.cardSuit].push(currentValue);
+    }
+    return acc;
+}, {});
+console.log(suitPack);
