@@ -104,3 +104,57 @@ let suitPack = deck.reduce((acc,currentValue) => {
     return acc;
 }, {});
 console.log(suitPack);
+
+function myReduce(arr, callback, initialValue) {
+    let accumulator;
+    let iterator;
+    if(initialValue === undefined) {
+        accumulator = arr[0];
+        iterator = 1
+    } else {
+        accumulator = initialValue;
+        iterator = 0;
+    }
+
+    for(let i = iterator; i < arr.length; i++) {
+        accumulator = callback(accumulator, arr[i]);
+    }
+    return accumulator;
+}
+
+console.log(myReduce(deck, (acc, card) => {
+    if (acc[card.cardSuit]) {
+        acc[card.cardSuit].push(card);
+    } else {
+        acc[card.cardSuit] = [];
+        acc[card.cardSuit].push(card);
+    }
+    return acc;
+}, {}));
+
+
+function groupBy(arr, keyOrFn) {
+    return myReduce(arr, (acc, current) => {
+        let groupName;
+        if(typeof keyOrFn === 'function') {
+            groupName = keyOrFn(current);
+        } else {
+            groupName = current[keyOrFn];
+        }
+
+        if(!acc[groupName]) {
+            acc[groupName] = []
+        }
+        acc[groupName].push(current);
+        return acc;
+    }, {});
+}
+
+const people = [
+    {name: "Bob", age: 30, city: "Kyiv"},
+    {name: "Alice", age: 25, city: "Lviv"},
+    {name: "Tom", age: 22, city: "Kyiv"},
+];
+
+let grouped = groupBy(people, p => p.age >= 25 ? "adult" : "young");
+console.log(grouped);
