@@ -14,18 +14,29 @@
     <script src="HW_10.js" defer></script>
 </head>
 <body>
- <div class="container">
-     <form action="">
-         <label for="age">Submit your age:</label>
-         <input type="number" name="age" id="age">
-         <input type="submit" value="Submit">
-     </form>
- </div>
- <button><a href="sessionsListPrint.html">Press to print</a></button>
-<div>
-    <label for="converter">Enter kgs to convert to pounds</label>
-    <input type="number" name="converter" id="converter">
-    <p>Converted value: <span id="converted-value">0</span>lbs</p>
+<!-- <div class="container">-->
+<!--     <form action="">-->
+<!--         <label for="age">Submit your age:</label>-->
+<!--         <input type="number" name="age" id="age">-->
+<!--         <input type="submit" value="Submit">-->
+<!--     </form>-->
+<!-- </div>-->
+<!-- <button><a href="sessionsListPrint.html">Press to print</a></button>-->
+<!--<div>-->
+<!--    <label for="converter">Enter kgs to convert to pounds</label>-->
+<!--    <input type="number" name="converter" id="converter">-->
+<!--    <p>Converted value: <span id="converted-value">0</span>lbs</p>-->
+<!--</div>-->
+<div class="table-creator">
+    <form action="#">
+        <label for="rows">Enter number of rows</label>
+        <input type="number" name="rows" id="rows">
+        <label for="columns">Enter number of columns</label>
+        <input type="number" name="columns" id="columns">
+        <label for="cellContent">Values</label>
+        <input type="text" name="cellContent" placeholder="Enter values separated by commas" id="cellContent">
+        <input type="submit" value="Create table">
+    </form>
 </div>
 </body>
 </html>
