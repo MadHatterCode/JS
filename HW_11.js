@@ -1,19 +1,28 @@
-const constRecipesContainer = document.createElement("div");
-constRecipesContainer.classList.add("recipes-container");
+const recipesContainer = document.createElement("div");
+recipesContainer.classList.add("recipes-container");
 
 fetch('https://dummyjson.com/recipes')
     .then(res => res.json())
     .then(recipesObj => {
         const {recipes} = recipesObj;
         console.log(recipes);
-    });
+        for (const recipe of recipes) {
+            const recipeBlock = document.createElement("div");
+            const {name, ingredients, instruction} = recipe;
+            const recipeTitle = document.createElement("h3");
+            recipeTitle.innerText = name;
+            const ingredientLst = document.createElement("li");
+            for (const ingredient of ingredients) {
+                const li = document.createElement("li");
+                li.innerText = ingredient;
+                ingredientLst.appendChild(li);
+            }
+            recipeBlock.append(recipeTitle, ingredientLst);
+            recipesContainer.append(recipeBlock);
+        }
+});
 
-const printRecipes = (recipes) => {
-    for (const recipe of recipes) {
-        
-    }
-}
-
+document.body.appendChild(recipesContainer);
 // fetch('https://dummyjson.com/carts ')
 //     .then(res => res.json())
 //     .then(res => {
